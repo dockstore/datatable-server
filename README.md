@@ -4,9 +4,19 @@ A sandbox repo for combining data tables server-side processing and angular
 
 # Required Endpoints
 
-GET methods for retrieving info to populate datatables must have the parameters <b>draw</b> and <b>length</b> to implement pagination instead of <b>offset</b> and <b>limit</b>.
+## Pagination
 
-GET methods must also send back parameters expected by the data table. <b>data, draw, recordsTotal, and recordersFilters</b>  
+GET methods for retrieving info to populate datatables must have the parameters <b>draw</b> and <b>length</b> instead of <b>offset</b> and <b>limit</b>.
+
+GET methods must also send back parameters expected by the data table: <b>data, draw, recordsTotal, and recordersFilters</b>.
+
+## Search
+
+When the user is typing into the search box, the frontend sends the param <b>search[value]</b>. We need endpoints for both containers and workflows tables' search. If the user enters 'bamstats', the tables should show 'dockstore-bamstats'.
+
+## Ordering
+
+When the user clicks on an orderable column, the frontend sends the param <b>order[<COL_NUM>][dir]</b> with either 'asc' or 'desc.'
 
 For more information visit [Data Tables Server-Side Processing.("https://datatables.net/manual/server-side#Example-data");
 
