@@ -1,3 +1,15 @@
+# Purpose
+
+A sandbox repo for combining data tables server-side processing and angular
+
+# Required Endpoints
+
+GET methods for retrieving info to populate datatables must have the parameters <b>draw</b> and <b>length</b> to implement pagination instead of <b>offset</b> and <b>limit</b>.
+
+GET methods must also send back parameters expected by the data table. <b>data, draw, recordsTotal, and recordersFilters</b>  
+
+For more information visit [Data Tables Server-Side Processing.("https://datatables.net/manual/server-side#Example-data");
+
 # Datatable
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0-rc.4.
