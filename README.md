@@ -4,19 +4,25 @@ A sandbox repo for combining data tables server-side processing and angular
 
 # Required Endpoints
 
+Expected Returned Data Parameters: draw, recordsTotal, recordsFiltered, data, error
+
 ## Pagination
 
-GET methods for retrieving info to populate datatables must have the parameters <b>draw</b> and <b>length</b> instead of <b>offset</b> and <b>limit</b>.
+Important Sent Parameters: draw, length
 
-GET methods must also send back parameters expected by the data table: <b>data, draw, recordsTotal, and recordersFilters</b>.
+The API already has offset and limit in place, simply rename them to be draw and length, respectively. The parameter draw acts as the page number, except it is starting from 0 rather than 1. The parameter length is the number of entries per page. If draw is 2, and the length is 10, the GET method should return <b>data</b> containing information from the 31st tool to the 40th tool (3 pages * 10 entries/page = 30 entries are in the pages before). The parameter <b>recordsTotal</b> indicates how many records for which pagination needs to be done.
 
 ## Search
 
-When the user is typing into the search box, the frontend sends the param <b>search[value]</b>. We need endpoints for both containers and workflows tables' search. If the user enters 'bamstats', the tables should show 'dockstore-bamstats'.
+Important Sent Parameter: search[value]
+
+When the user is typing into the search box, the frontend sends the param <b>search[value]</b> with a call to the GET method. Ideally, the callback should only occur after the user stops typing. See an example here: [Search Using Observables]("https://blog.thoughtram.io/angular/2016/01/06/taking-advantage-of-observables-in-angular2.html").
 
 ## Ordering
 
-When the user clicks on an orderable column, the frontend sends the param <b>order[<COL_NUM>][dir]</b> with either 'asc' or 'desc.'
+Important Sent Parameter: order[COL_NUM][dir]
+
+When the user clicks to order a column, the frontend sends the param <b>order[COL_NUM][dir]</b> with either 'asc' or 'desc' with a call to the GET method. The backend should reorder the entries and return the result.
 
 For more information visit [Data Tables Server-Side Processing.("https://datatables.net/manual/server-side#Example-data");
 
